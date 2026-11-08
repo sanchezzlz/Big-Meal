@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Big Meal — ресторан больших порций в Москве</title>
+<meta name="description" content="Big Meal: ресторан в Москве с большими сытными порциями. Средний чек от 790 ₽. Запишитесь на столик онлайн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF4DC; --sand:#F1DFB8; --ink:#2B2019; --muted:#6B5B4D; --accent:#D8381E; --white:#FFFBF2;
+  --r1:16px; --r2:24px;
+  --font:"Onest",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:var(--font);font-size:16px;line-height:1.5;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:8px}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:64px 0}
+h1,h2,h3{font-weight:800;line-height:1.05;letter-spacing:-.02em}
+h1{font-size:48px}
+h2{font-size:36px;margin-bottom:32px}
+h3{font-size:24px;letter-spacing:-.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border:2px solid var(--ink);border-radius:999px;background:var(--accent);color:var(--white);font:600 16px/1 var(--font);text-decoration:none;cursor:pointer;box-shadow:0 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--ink)}
+.btn.ghost{background:var(--white);color:var(--ink)}
+.btn.sm{min-height:40px;padding:0 16px;font-size:14px;box-shadow:0 3px 0 var(--ink)}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:2px solid var(--ink)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;font-size:24px;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo svg{width:32px;height:32px}
+nav{display:none}
+nav a{font-weight:600;text-decoration:none;margin-right:32px;display:inline-block;padding:8px 0}
+nav a:hover{color:var(--accent)}
+
+/* hero */
+.hero{padding:32px 0 48px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+.hero p.lead{font-size:18px;margin:24px 0 8px;max-width:480px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 24px;color:var(--muted);font-weight:600;margin-bottom:32px}
+.cta{display:flex;flex-wrap:wrap;gap:16px}
+.plate{position:relative;aspect-ratio:1;max-width:480px;width:100%;margin:0 auto;background:var(--accent);border-radius:var(--r2);display:grid;place-items:center;border:2px solid var(--ink)}
+.plate .ring{width:80%;aspect-ratio:1;border-radius:50%;background:var(--white);border:2px solid var(--ink);display:grid;place-items:center;box-shadow:8px 8px 0 var(--ink)}
+.plate .food{width:62%;aspect-ratio:1;border-radius:50%;background:var(--sand);border:2px dashed var(--muted);display:grid;place-items:center;text-align:center;padding:16px;font-size:14px;color:var(--muted);font-weight:600}
+.badge{position:absolute;right:16px;top:16px;background:var(--ink);color:var(--white);border-radius:999px;padding:8px 16px;font-weight:800;font-size:14px}
+
+/* marquee */
+.tape{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:16px 0}
+.tape div{display:inline-flex;gap:32px;align-items:center;animation:run 28s linear infinite;font-weight:800;font-size:18px;padding-right:32px}
+.tape i{width:16px;height:16px;border-radius:50%;background:var(--accent);display:inline-block}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* menu */
+.grid{display:grid;gap:24px}
+.card{border:2px solid var(--ink);border-radius:var(--r2);background:var(--white);overflow:hidden;display:flex;flex-direction:column}
+.card .pic{aspect-ratio:4/3;display:grid;place-items:center;border-bottom:2px solid var(--ink)}
+.card .pic span{width:56%;aspect-ratio:1;border-radius:50%;background:var(--white);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);display:grid;place-items:center;font-size:14px;font-weight:600;color:var(--muted);text-align:center}
+.c1{background:var(--accent)}.c2{background:var(--sand)}.c3{background:var(--ink)}
+.card .body{padding:24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .meta{color:var(--muted);font-weight:600}
+.card .foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto;padding-top:16px}
+.price{font-size:24px;font-weight:800}
+.menu-cta{margin-top:48px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px}
+.menu-cta span{color:var(--muted);font-weight:600}
+
+/* why */
+.why{background:var(--sand);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.why .item{display:grid;gap:8px;align-content:start}
+.why svg{width:48px;height:48px;stroke:var(--accent);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:8px}
+.why .big{font-size:48px;font-weight:800;letter-spacing:-.02em;line-height:1}
+
+/* gallery */
+.mosaic{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.ph{border-radius:var(--r1);border:2px solid var(--ink);aspect-ratio:1;display:flex;align-items:flex-end;padding:16px;font-weight:600}
+.ph.wide{grid-column:span 2;aspect-ratio:2/1}
+.ph.a{background:var(--accent);color:var(--white)}.ph.b{background:var(--sand)}.ph.c{background:var(--ink);color:var(--bg)}.ph.d{background:var(--white)}
+.note{margin-top:16px;color:var(--muted);font-size:14px}
+
+/* reviews */
+.stub{display:inline-block;background:var(--ink);color:var(--bg);border-radius:8px;padding:8px 16px;font-size:14px;font-weight:600;margin-bottom:24px}
+.rev{padding:24px;border:2px solid var(--ink);border-radius:var(--r2);background:var(--white);display:flex;flex-direction:column;gap:16px}
+.stars{display:flex;gap:4px;color:var(--accent)}
+.stars svg{width:24px;height:24px;fill:currentColor}
+.rev .who{font-weight:800}
+.rev .tag{font-size:14px;color:var(--muted);font-weight:600}
+
+/* where */
+.where .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+.info dl{display:grid;gap:24px;margin-bottom:32px}
+.info dt{color:var(--muted);font-weight:600;font-size:14px}
+.info dd{font-size:20px;font-weight:600}
+.map{min-height:320px;border:2px solid var(--ink);border-radius:var(--r2);background:var(--sand);position:relative;overflow:hidden}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.map .pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);background:var(--accent);color:var(--white);border:2px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:800;white-space:nowrap}
+
+/* form */
+.book{background:var(--accent);color:var(--white);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.book .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+.book p{font-size:18px;max-width:440px}
+form{background:var(--white);color:var(--ink);border:2px solid var(--ink);border-radius:var(--r2);padding:24px;display:grid;gap:24px;box-shadow:8px 8px 0 var(--ink)}
+label{display:grid;gap:8px;font-weight:600}
+input{width:100%;min-width:0;font:400 18px var(--font);height:56px;padding:0 16px;border:2px solid var(--ink);border-radius:var(--r1);background:var(--bg);color:var(--ink)}
+input[aria-invalid="true"]{border-color:var(--accent);background:#FFE6DF}
+.err{color:var(--accent);font-size:14px;min-height:24px;font-weight:600}
+.consent{font-size:13px;color:var(--muted);line-height:1.5}
+.ok{display:none;text-align:center;padding:16px 0}
+.ok h3{margin-bottom:8px}
+form.done .f{display:none}form.done .ok{display:block}
+
+/* footer */
+footer{background:var(--ink);color:var(--bg);padding:48px 0 32px}
+footer .wrap{display:grid;gap:32px}
+footer a{text-decoration:none;font-weight:600;display:inline-block;padding:8px 0}
+footer a:hover{color:var(--sand);text-decoration:underline}
+footer ul{list-style:none;display:grid;gap:8px}
+footer .logo{color:var(--bg)}
+footer small{display:block;color:#CDBBA2;font-size:13px;border-top:1px solid #5A4A3D;padding-top:24px;margin-top:8px;grid-column:1/-1}
+
+@media (min-width:768px){
+  .wrap{padding:0 32px}
+  section{padding:96px 0}
+  h1{font-size:72px}
+  h2{font-size:48px}
+  nav{display:block}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .hero .wrap{grid-template-columns:1.1fr .9fr;align-items:center;gap:48px}
+  .why .grid{grid-template-columns:repeat(3,1fr);gap:32px}
+  .mosaic{grid-template-columns:repeat(4,1fr)}
+  .ph.wide{grid-column:span 2;aspect-ratio:2/1}
+  .ph.tall{grid-row:span 2;aspect-ratio:auto}
+  .where .wrap,.book .wrap{grid-template-columns:1fr 1fr;align-items:center;gap:48px}
+  footer .wrap{grid-template-columns:2fr 1fr 1fr}
+}
+@media (min-width:1024px){
+  .grid.three{grid-template-columns:repeat(3,1fr)}
+  h1{font-size:88px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .tape div{animation:none}
+  .btn{transition:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.3l7.1-.7z"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Big Meal, на главную">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#D8381E" stroke="#2B2019" stroke-width="2"/><circle cx="16" cy="16" r="7" fill="#FFFBF2" stroke="#2B2019" stroke-width="2"/></svg>
+      Big Meal
+    </a>
+    <nav aria-label="Основная навигация">
+      <a href="#menu">Меню</a><a href="#why">О нас</a><a href="#reviews">Отзывы</a><a href="#where">Как добраться</a>
+    </nav>
+    <a class="btn sm" href="#book">Записаться</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Порции, после которых не нужен ужин</h1>
+      <p class="lead">Big Meal — ресторан в Москве, где основное блюдо весит от 400 граммов, а добавка гарнира бесплатна.</p>
+      <div class="facts"><span>Москва, ул. Примерная, 12</span><span>Чек от 790 ₽</span><span>Ежедневно 11:00–23:00</span></div>
+      <div class="cta"><a class="btn" href="#book">Записаться</a><a class="btn ghost" href="#menu">Смотреть меню</a></div>
+    </div>
+    <div class="plate" role="img" aria-label="Место для фото фирменного блюда">
+      <span class="badge">650 г</span>
+      <div class="ring"><div class="food">Фото фирменного стейк-бокса</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="tape" aria-hidden="true">
+  <div>
+    <span>Большие порции</span><i></i><span>Готовим при вас</span><i></i><span>Свежие продукты</span><i></i><span>Работаем до 23:00</span><i></i>
+    <span>Большие порции</span><i></i><span>Готовим при вас</span><i></i><span>Свежие продукты</span><i></i><span>Работаем до 23:00</span><i></i>
+  </div>
+</div>
+
+<section id="menu">
+  <div class="wrap">
+    <h2>Что у нас в тарелке</h2>
+    <div class="grid three">
+      <article class="card"><div class="pic c1"><span>Фото</span></div><div class="body"><h3>Стейк-бокс</h3><p class="meta">650 г, говядина, картофель, соус на выбор</p><div class="foot"><span class="price">1 690 ₽</span></div></div></article>
+      <article class="card"><div class="pic c2"><span>Фото</span></div><div class="body"><h3>Борщ в хлебе</h3><p class="meta">500 мл, со сметаной и чесночными пампушками</p><div class="foot"><span class="price">790 ₽</span></div></div></article>
+      <article class="card"><div class="pic c3"><span>Фото</span></div><div class="body"><h3>Пельмени ручной лепки</h3><p class="meta">400 г, говядина и свинина, сметана, масло</p><div class="foot"><span class="price">950 ₽</span></div></div></article>
+      <article class="card"><div class="pic c2"><span>Фото</span></div><div class="body"><h3>Бургер Big</h3><p class="meta">450 г, две котлеты, чеддер, картофель по-деревенски</p><div class="foot"><span class="price">1 190 ₽</span></div></div></article>
+      <article class="card"><div class="pic c3"><span>Фото</span></div><div class="body"><h3>Паста на сковороде</h3><p class="meta">420 г, курица, грибы, сливочный соус</p><div class="foot"><span class="price">890 ₽</span></div></div></article>
+      <article class="card"><div class="pic c1"><span>Фото</span></div><div class="body"><h3>Сет на компанию</h3><p class="meta">На 4 человека: мясо, гарниры, закуски, морс</p><div class="foot"><span class="price">5 900 ₽</span></div></div></article>
+    </div>
+    <div class="menu-cta"><a class="btn" href="#book">Записаться</a><span>Выберите блюда на месте, столик будет вас ждать.</span></div>
+    <p class="note">Цены и состав указаны для примера. Замените на актуальные.</p>
+  </div>
+</section>
+
+<section id="why" class="why">
+  <div class="wrap">
+    <h2>Почему к нам возвращаются</h2>
+    <div class="grid">
+      <div class="item">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="8"/></svg>
+        <span class="big">500+ г</span><h3>В каждом основном блюде</h3><p>Взвешиваем при выдаче. Вы получаете столько, сколько написано в меню.</p>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 28h32M12 28c0 8 5 12 12 12s12-4 12-12M18 18c0-4 4-4 4-8M28 18c0-4 4-4 4-8"/></svg>
+        <span class="big">Каждый день</span><h3>Свежее, без полуфабрикатов</h3><p>Мясо, тесто и соусы готовим на нашей кухне утром, а не размораживаем.</p>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 10v28M10 24h28"/></svg>
+        <span class="big">Добавка</span><h3>Гарнира бесплатно</h3><p>Не хватило? Попросите официанта, и принесём ещё порцию без доплаты.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="photos">
+  <div class="wrap">
+    <h2>Как это выглядит на столе</h2>
+    <div class="mosaic">
+      <div class="ph a wide">Стейк-бокс</div>
+      <div class="ph b">Борщ в хлебе</div>
+      <div class="ph c">Пельмени</div>
+      <div class="ph d tall">Бургер Big</div>
+      <div class="ph c">Паста</div>
+      <div class="ph a">Десерт дня</div>
+      <div class="ph b wide">Сет на компанию</div>
+    </div>
+    <p class="note">Это места под фотографии. Замените блоки на снимки ваших блюд.</p>
+  </div>
+</section>
+
+<section id="reviews" style="background:var(--sand);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)">
+  <div class="wrap">
+    <h2>Что говорят гости</h2>
+    <span class="stub">Отзывы-заглушки. Замените на настоящие.</span>
+    <div class="grid three">
+      <figure class="rev"><div class="stars" role="img" aria-label="5 звёзд из 5"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div><blockquote>Пришли вчетвером после работы и взяли один сет. Наелись так, что до дома шли пешком.</blockquote><figcaption><span class="who">Алексей К.</span><br><span class="tag">Пример отзыва</span></figcaption></figure>
+      <figure class="rev"><div class="stars" role="img" aria-label="5 звёзд из 5"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div><blockquote>Борщ в хлебе огромный, хватило на двоих. Гарнир по просьбе принесли без разговоров.</blockquote><figcaption><span class="who">Марина С.</span><br><span class="tag">Пример отзыва</span></figcaption></figure>
+      <figure class="rev"><div class="stars" role="img" aria-label="4 звезды из 5"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg style="opacity:.25"><use href="#star"/></svg></div><blockquote>Вкусно и честные порции за свои деньги. По вечерам пятницы лучше записываться заранее.</blockquote><figcaption><span class="who">Дмитрий В.</span><br><span class="tag">Пример отзыва</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="where" class="where">
+  <div class="wrap">
+    <div class="info">
+      <h2>Как добраться</h2>
+      <dl>
+        <div><dt>Адрес</dt><dd>Москва, ул. Примерная, 12</dd></div>
+        <div><dt>Метро</dt><dd>Станция «Примерная», 5 минут пешком</dd></div>
+        <div><dt>Часы работы</dt><dd>Ежедневно, 11:00–23:00</dd></div>
+        <div><dt>Парковка</dt><dd>Бесплатная во дворе, 10 мест</dd></div>
+      </dl>
+      <a class="btn" href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D0%BD%D0%B0%D1%8F%2C%2012" target="_blank" rel="noopener">Построить маршрут</a>
+    </div>
+    <div class="map" role="img" aria-label="Схема расположения ресторана">
+      <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g stroke="#FFFBF2" stroke-width="16" fill="none"><path d="M-10 90H410M-10 230H410M110-10V330M290-10V330"/></g><path d="M-10 160L410 120" stroke="#FFFBF2" stroke-width="8"/><rect x="130" y="108" width="140" height="104" rx="8" fill="#F1DFB8" opacity="0"/></svg>
+      <span class="pin">Big Meal</span>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="book">
+  <div class="wrap">
+    <div>
+      <h2>Запишитесь на столик</h2>
+      <p>Оставьте имя и телефон. Администратор перезвонит в течение 15 минут и подтвердит время.</p>
+    </div>
+    <form id="form" novalidate>
+      <div class="f" style="display:grid;gap:24px">
+        <label>Имя
+          <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Как к вам обращаться" required>
+          <span class="err" id="e-name" role="alert"></span>
+        </label>
+        <label>Телефон
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required>
+          <span class="err" id="e-phone" role="alert"></span>
+        </label>
+        <button class="btn" type="submit">Записаться</button>
+        <p class="consent">Нажимая «Записаться», вы соглашаетесь на обработку персональных данных. Форма демонстрационная: данные никуда не отправляются.</p>
+      </div>
+      <div class="ok" role="status"><h3>Спасибо, мы вас записали</h3><p>Администратор перезвонит и подтвердит время.</p></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top">Big Meal</a>
+      <p style="margin-top:16px;max-width:320px">Ресторан больших порций в Москве. Приходите голодными.</p>
+    </div>
+    <ul>
+      <li><a href="tel:+74950000000">+7 (495) 000-00-00</a></li>
+      <li>Москва, ул. Примерная, 12</li>
+      <li>Ежедневно 11:00–23:00</li>
+    </ul>
+    <ul>
+      <li><a href="#">Telegram</a></li>
+      <li><a href="#">VK</a></li>
+      <li><a href="#">Яндекс Карты</a></li>
+    </ul>
+    <small>ИП Иванов И. И., ИНН 000000000000, ОГРНИП 000000000000000. Реквизиты указаны для примера.</small>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var f=document.getElementById('form'),n=document.getElementById('name'),p=document.getElementById('phone');
+  p.addEventListener('input',function(){
+    var d=p.value.replace(/\D/g,'');
+    if(d[0]==='8'||d[0]==='7')d=d.slice(1);
+    d=d.slice(0,10);
+    var s=d.length?'+7 ('+d.slice(0,3):'';
+    if(d.length>3)s+=') '+d.slice(3,6);
+    if(d.length>6)s+='-'+d.slice(6,8);
+    if(d.length>8)s+='-'+d.slice(8,10);
+    p.value=s;
+  });
+  function bad(el,id,msg){el.setAttribute('aria-invalid','true');document.getElementById(id).textContent=msg}
+  function good(el,id){el.removeAttribute('aria-invalid');document.getElementById(id).textContent=''}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();var ok=true;
+    if(n.value.trim().length<2){bad(n,'e-name','Введите имя, минимум 2 буквы');ok=false}else good(n,'e-name');
+    if(p.value.replace(/\D/g,'').length<11){bad(p,'e-phone','Введите номер полностью, 10 цифр после +7');ok=false}else good(p,'e-phone');
+    if(ok)f.classList.add('done');
+  });
+})();
+</script>
+</body>
+</html>
